@@ -10,10 +10,10 @@ require "sidekiq_scheduler_multihost/workers/defibrillator"
 
 Sidekiq.configure_server do |config|
   config.on(:startup) do
-    SidekiqSchedulerMultihost::Heartbeat.start
+    SidekiqSchedulerMultihost::Heartbeat.new.start
   end
 
   config.on(:shutdown) do
-    SidekiqSchedulerMultihost::Heartbeat.stop
+    SidekiqSchedulerMultihost::Heartbeat.new.stop
   end
 end
